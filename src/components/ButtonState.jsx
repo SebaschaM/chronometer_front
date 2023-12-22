@@ -3,7 +3,12 @@ import { ToggleButton } from "@mui/material";
 import { useState, useEffect } from "react";
 import ModalCleanConfirm from "../components/ModalCleanConfirm.jsx";
 
-const ButtonState = ({ defaultState, confirmModal, onStateChange, onRefresh }) => {
+const ButtonState = ({
+  defaultState,
+  confirmModal,
+  onStateChange,
+  onRefresh,
+}) => {
   const [modal, setModal] = useState(false);
   const [alignment, setAlignment] = useState(defaultState);
 
