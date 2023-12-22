@@ -3,7 +3,7 @@ import { ToggleButton } from "@mui/material";
 import { useState, useEffect } from "react";
 import ModalCleanConfirm from "../components/ModalCleanConfirm.jsx";
 
-const ButtonState = ({ defaultState, confirmModal, onStateChange }) => {
+const ButtonState = ({ defaultState, confirmModal, onStateChange, onRefresh }) => {
   const [modal, setModal] = useState(false);
   const [alignment, setAlignment] = useState(defaultState);
 
@@ -63,7 +63,16 @@ const ButtonState = ({ defaultState, confirmModal, onStateChange }) => {
       >
         Desconectado
       </ToggleButton>
-
+      <ToggleButton
+        value="refresh"
+        //selected={alignment === "disconnected"}
+        //onChange={() => handleToggle("refresh")}
+        onClick={onRefresh}
+        aria-label="disconnected"
+        color="error"
+      >
+        Actualizar tiempo
+      </ToggleButton>
       <ToggleButton
         value="clean"
         onChange={() => {
@@ -73,7 +82,6 @@ const ButtonState = ({ defaultState, confirmModal, onStateChange }) => {
       >
         Limpiar
       </ToggleButton>
-
       {modal && (
         <ModalCleanConfirm
           show={modal}

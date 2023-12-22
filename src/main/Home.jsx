@@ -1,5 +1,3 @@
-//go.botmaker.com/#/chats/T682IJ4PDJXCDHNJGS1B
-
 import { Box, Container, Typography, ToggleButtonGroup } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
@@ -29,11 +27,17 @@ function App() {
   });
 
   const handleStateChange = (newState) => {
-    calculateTime(selectedState);
-    setSelectedState(newState);
-    localStorage.setItem("selectedStateCurrent", newState);
-    setCurrentTimeSelected(currentTime.getTime());
-    localStorage.setItem("currentTimeSelected", currentTime.getTime());
+    if (newState === "refresh") {
+      // Actualiza el tiempo sin cambiar el estado
+      calculateTime(selectedState);
+    } else {
+      // Calcula el tiempo y cambia el estado
+      calculateTime(newState);
+      setSelectedState(newState);
+      localStorage.setItem("selectedStateCurrent", newState);
+      setCurrentTimeSelected(currentTime.getTime());
+      localStorage.setItem("currentTimeSelected", currentTime.getTime());
+    }
   };
 
   //calcular el tiempo acumulado por cada estado
@@ -176,7 +180,7 @@ function App() {
           }}
         />
         <Typography variant="h2" component="h1" align="center">
-          Cronómetro Botmaker
+          Cronómetro de estados
         </Typography>
       </Box>
 
@@ -196,15 +200,13 @@ function App() {
           {currentTime.toLocaleTimeString()}
         </Typography>
         <Box sx={{ "& button": { m: 2 } }}>
-          <ToggleButtonGroup
-            //value={alignment}
-            exclusive
-            //onChange={handleAlignment}
-            aria-label="text alignment"
-          >
+          <ToggleButtonGroup exclusive aria-label="text alignment">
             <ButtonState
               defaultState={localStorage.getItem("selectedStateCurrent")}
               onStateChange={handleStateChange}
+              onRefresh={() => {
+                calculateTime(selectedState);
+              }}
               confirmModal={() => {
                 cleanTime();
               }}
