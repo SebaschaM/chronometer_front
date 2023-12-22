@@ -6,7 +6,7 @@ import { ThemeProvider } from "@emotion/react";
 import theme from "../theme.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-<ThemeProvider theme={theme}>
+  <ThemeProvider theme={theme}>
     <App />
-</ThemeProvider>
+  </ThemeProvider>
 );

@@ -32,11 +32,11 @@ function App() {
       calculateTime(selectedState);
     } else {
       // Calcula el tiempo y cambia el estado
-      calculateTime(newState);
-      setSelectedState(newState);
-      localStorage.setItem("selectedStateCurrent", newState);
-      setCurrentTimeSelected(currentTime.getTime());
-      localStorage.setItem("currentTimeSelected", currentTime.getTime());
+     calculateTime(selectedState);
+     setSelectedState(newState);
+     localStorage.setItem("selectedStateCurrent", newState);
+     setCurrentTimeSelected(currentTime.getTime());
+     localStorage.setItem("currentTimeSelected", currentTime.getTime());
     }
   };
 
@@ -180,7 +180,7 @@ function App() {
           }}
         />
         <Typography variant="h2" component="h1" align="center">
-          Cronómetro de estados
+          Cronómetro Botmaker
         </Typography>
       </Box>
 
